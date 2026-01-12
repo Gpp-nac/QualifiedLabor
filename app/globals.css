@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid #4499DD;
+  outline-offset: 2px;
+}
+
+/* Large touch targets */
+button, a, input, select, textarea {
+  min-height: 44px;
+}
+
+@media (min-width: 768px) {
+  button, a, input, select, textarea {
+    min-height: auto;
+  }
+}
