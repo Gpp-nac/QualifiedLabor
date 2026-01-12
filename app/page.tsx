@@ -36,8 +36,7 @@ export default function Home() {
           </div>
           <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6">
             Contractors need workers.<br />
-            Workers need a start.<br />
-            <span className="text-ql-green">Done.</span>
+            <span className="text-ql-green">Workers need a start.</span>
           </h1>
           <p className="text-lg md:text-xl text-ql-gray max-w-2xl mx-auto mb-10 leading-relaxed">
             We match trade contractors with people who actually want to work.
