@@ -1,9 +1,45 @@
 import { EmployerForm } from '@/components/EmployerForm'
 import { WorkerForm } from '@/components/WorkerForm'
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Qualified Labor',
+  description: 'Connect skilled trade workers with contractors. Plumbing, electrical, HVAC, carpentry, welding and more.',
+  url: 'https://qualifiedlabor.net',
+  telephone: '+1-617-858-5308',
+  areaServed: 'United States',
+  serviceType: [
+    'Trade Worker Recruitment',
+    'Skilled Labor Placement',
+    'Apprenticeship Matching',
+  ],
+}
+
+const jobPostingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Qualified Labor',
+  url: 'https://qualifiedlabor.net',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://qualifiedlabor.net/?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+}
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
+      />
+      <main className="min-h-screen">
       {/* Header - sticky, clean */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-ql-gray-light">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
@@ -428,5 +464,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   )
 }
