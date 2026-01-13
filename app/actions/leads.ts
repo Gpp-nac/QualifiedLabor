@@ -1,11 +1,6 @@
 'use server'
 
-import { createClient } from '@supabase/supabase-js'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+import { createServerClient } from '@/lib/supabase/server'
 
 const GOOGLE_SHEET_URL = 'https://script.google.com/a/macros/studenthelpers.net/s/AKfycbwIoa2ypB5TA-ZJevd2JrP4x2Sy4BItlNnxo3wHl78QNUZsBsn5oLqpv1KGmq7b0k1w4Q/exec'
 
@@ -39,10 +34,16 @@ export async function submitEmployerLead(formData: FormData) {
   }
 
   // Save to Supabase
-  const { error } = await supabase.from('leads').insert(lead)
+  try {
+    const supabase = createServerClient()
+    const { error } = await supabase.from('leads').insert(lead)
 
-  if (error) {
-    console.error('Employer lead error:', error)
+    if (error) {
+      console.error('Employer lead error:', error)
+      return { error: 'Something went wrong. Please try again.' }
+    }
+  } catch (err) {
+    console.error('Supabase client error:', err)
     return { error: 'Something went wrong. Please try again.' }
   }
 
@@ -68,10 +69,16 @@ export async function submitWorkerLead(formData: FormData) {
   }
 
   // Save to Supabase
-  const { error } = await supabase.from('leads').insert(lead)
+  try {
+    const supabase = createServerClient()
+    const { error } = await supabase.from('leads').insert(lead)
 
-  if (error) {
-    console.error('Worker lead error:', error)
+    if (error) {
+      console.error('Worker lead error:', error)
+      return { error: 'Something went wrong. Please try again.' }
+    }
+  } catch (err) {
+    console.error('Supabase client error:', err)
     return { error: 'Something went wrong. Please try again.' }
   }
 
